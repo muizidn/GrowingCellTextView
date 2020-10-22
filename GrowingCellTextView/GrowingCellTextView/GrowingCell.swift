@@ -28,8 +28,7 @@ open class GrowingCell: UITableViewCell {
 }
 
 extension GrowingCell: UITextViewDelegate {
-    
-    private func textViewDidChange(_ textView: UITextView) {
+    public func textViewDidChange(_ textView: UITextView) {
         if let deletate = growingCellDelegate {
             deletate.updateHeightOfRow(self, textView)
         }
