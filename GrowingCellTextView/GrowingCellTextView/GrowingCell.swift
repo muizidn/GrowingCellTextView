@@ -8,29 +8,29 @@
 
 import UIKit
 
-protocol GrowingCellProtocol: class {
+public protocol GrowingCellProtocol: class {
     func updateHeightOfRow(_ cell: GrowingCell, _ textView: UITextView)
 }
 
-class GrowingCell: UITableViewCell {
+open class GrowingCell: UITableViewCell {
     
-    weak var cellDelegate: GrowingCellProtocol?
-    @IBOutlet weak var textView: UITextView!
+    public weak var growingCellDelegate: GrowingCellProtocol?
+    @IBOutlet public weak var textView: UITextView!
     
-    override func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib()
         textView.delegate = self
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
+    override open func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
 }
 
 extension GrowingCell: UITextViewDelegate {
     
-    func textViewDidChange(_ textView: UITextView) {
-        if let deletate = cellDelegate {
+    private func textViewDidChange(_ textView: UITextView) {
+        if let deletate = growingCellDelegate {
             deletate.updateHeightOfRow(self, textView)
         }
     }
